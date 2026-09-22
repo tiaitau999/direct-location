@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Maisonnette Narbonnaise — Location vacances Narbonne</title>
+  <meta name="description" content="La Maisonnette Narbonnaise : votre hebergement de vacances a Narbonne. Reservez en direct, sans commission.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c0a09'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='serif' font-size='18' fill='%23b8a88a'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --s950:#0c0a09;--s900:#1c1917;--s800:#292524;--s700:#44403c;--s500:#78716c;
+      --s400:#a8a29e;--s300:#d6d3d1;--s200:#e7e5e4;--s100:#f5f5f4;--s50:#fafaf9;
+      --w:#fff;--accent:#8b7355;--al:#b8a88a;--green:#4d7c5e;--star:#c9a84c;
+    }
+    body{font-family:'Inter',sans-serif;color:var(--s700);background:var(--w);line-height:1.7;-webkit-font-smoothing:antialiased;font-weight:300}
+    .w{max-width:1000px;margin:0 auto;padding:0 24px}
+
+    /* Nav */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(12,10,9,0.97);backdrop-filter:blur(12px);padding:0 28px;height:50px;display:flex;align-items:center;justify-content:space-between}
+    .nav-brand{font-family:'Cormorant Garamond',serif;color:var(--w);font-size:1rem;font-weight:500;text-decoration:none}
+    .nav-brand span{color:var(--al)}
+    .nav-cta{color:var(--s400);font-size:.7rem;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;padding:6px 16px;border:1px solid var(--s700);transition:all .2s}
+    .nav-cta:hover{color:var(--w);border-color:var(--s400)}
+
+    /* Hero */
+    .hero{background:var(--s950);color:var(--w);min-height:70vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding:0 0 56px}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.15) 0%,rgba(0,0,0,.55) 100%);z-index:1}
+    .hero-c{position:relative;z-index:2;width:100%;padding:0 28px}
+    .hero-kicker{font-size:.68rem;text-transform:uppercase;letter-spacing:.16em;color:var(--al);margin-bottom:10px}
+    .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:400;line-height:1.12;letter-spacing:-.02em;margin-bottom:10px}
+    .hero-sub{font-size:.92rem;color:var(--s300);font-weight:300;margin-bottom:24px;max-width:500px}
+    .badges{display:flex;gap:10px;flex-wrap:wrap}
+    .badge{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;font-size:.7rem;border:1px solid rgba(255,255,255,.2);color:var(--s300);text-transform:uppercase;letter-spacing:.04em}
+
+    /* Sections */
+    .s{padding:64px 24px}
+    .s-alt{background:var(--s50)}
+    .sh{text-align:center;margin-bottom:36px}
+    .tag{font-size:.66rem;font-weight:500;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);margin-bottom:8px}
+    .sh h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:400;color:var(--s900);letter-spacing:-.02em}
+    .sh p{color:var(--s500);font-weight:300;max-width:420px;margin:8px auto 0;font-size:.88rem}
+
+    /* Description */
+    .desc-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;max-width:860px;margin:0 auto}
+    .desc-text p{font-size:.92rem;color:var(--s500);line-height:1.8;margin-bottom:12px}
+    .desc-img{overflow:hidden}
+    .desc-img img{width:100%;height:320px;object-fit:cover}
+    .highlights{display:flex;gap:24px;margin-top:20px;padding-top:20px;border-top:1px solid var(--s200)}
+    .hl{text-align:center}
+    .hl-n{display:block;font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--s900)}
+    .hl-l{font-size:.65rem;color:var(--s400);text-transform:uppercase;letter-spacing:.08em}
+
+    /* Gallery */
+    .g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:860px;margin:0 auto}
+    .g-item{overflow:hidden;aspect-ratio:4/3}
+    .g-item img{width:100%;height:100%;object-fit:cover;transition:opacity .2s}
+    .g-item:hover img{opacity:.85}
+    .g-item:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+
+    /* Equipements */
+    .eq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--s200);max-width:700px;margin:0 auto}
+    .eq{padding:18px 16px;display:flex;align-items:center;gap:10px;border-right:1px solid var(--s200);border-bottom:1px solid var(--s200);font-size:.82rem;color:var(--s700)}
+    .eq:nth-child(3n){border-right:none}
+    .eq svg{flex-shrink:0;color:var(--accent)}
+
+    /* Avis */
+    .r-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border:1px solid var(--s200);max-width:800px;margin:0 auto}
+    .r-card{padding:24px;border-right:1px solid var(--s200)}
+    .r-card:last-child{border-right:none}
+    .r-stars{color:var(--star);font-size:.9rem;margin-bottom:10px}
+    .r-text{font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--s700);line-height:1.7;font-style:italic;margin-bottom:14px}
+    .r-author{display:flex;align-items:center;gap:8px}
+    .r-avatar{width:30px;height:30px;background:var(--s900);color:var(--w);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:500}
+    .r-author span{font-size:.75rem;color:var(--s400)}
+
+    /* CTA */
+    .cta-section{background:var(--s950);color:var(--w);padding:56px 24px;text-align:center}
+    .cta-section h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin-bottom:10px}
+    .cta-section>div>p{color:var(--s400);font-weight:300;font-size:.88rem;margin-bottom:28px}
+    .cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .c-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;text-decoration:none;font-size:.72rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;transition:all .2s}
+    .c-wa{background:var(--w);color:var(--s900)}
+    .c-tel{border:1px solid var(--s500);color:var(--s300)}
+    .c-tel:hover{border-color:var(--s300);color:var(--w)}
+
+    /* Banner prospect */
+    .prospect-banner{background:var(--accent);color:var(--w);text-align:center;padding:12px 20px;font-size:.78rem;font-weight:400;letter-spacing:.02em}
+    .prospect-banner a{color:var(--w);text-decoration:underline}
+
+    /* Footer */
+    .footer{border-top:1px solid var(--s200);padding:16px 24px;text-align:center;font-size:.7rem;color:var(--s400)}
+
+    /* Responsive */
+    @media(max-width:768px){
+      .desc-grid{grid-template-columns:1fr}
+      .g-grid{grid-template-columns:repeat(2,1fr)}
+      .g-item:first-child{grid-column:span 2}
+      .eq-grid{grid-template-columns:repeat(2,1fr)}
+      .eq:nth-child(2n){border-right:none}
+      .eq:nth-child(3n){border-right:1px solid var(--s200)}
+      .r-grid{grid-template-columns:1fr}
+      .r-card{border-right:none;border-bottom:1px solid var(--s200)}
+      .r-card:last-child{border-bottom:none}
+      .hero{min-height:50vh}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="prospect-banner">
+    Ce site a ete cree pour vous par <strong>Direct Location</strong> —
+    <a href="https://wa.me/33784302389?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20votre%20offre%20de%20site%20web%20pour%20La%20Maisonnette%20Narbonnaise." target="_blank">Interessé ? Contactez-moi</a>
+  </div>
+
+  <nav class="nav">
+    <a href="#" class="nav-brand">La Maisonnette Narbonnaise</a>
+    <a href="#contact" class="nav-cta">Reserver</a>
+  </nav>
+
+  <header class="hero" style="background-image:url('https:/media/newdam/preset-rich-media-desktop/c2/de/55/00/00/68/3b/b0/8c/c3/5ecfc2de550000683bb08cc3/5ecfc2de550000683bb08cc4.jpg');background-size:cover;background-position:center;">
+    <div class="hero-overlay"></div>
+    <div class="hero-c">
+      <div class="hero-kicker">Location vacances · Narbonne</div>
+      <h1>La Maisonnette Narbonnaise</h1>
+      <p class="hero-sub">La Maisonnette Narbonnaise vous accueille dans une charmante maison de ville calme, à deux pas du centre historique de Narbonne. Confort moderne avec </p>
+      <div class="badges">
+        <span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Narbonne</span>
+        
+        <span class="badge">Reservation directe</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="s" id="decouvrir">
+    <div class="w">
+      <div class="sh"><div class="tag">Decouvrir</div><h2>Votre sejour a Narbonne</h2></div>
+      <div class="desc-grid">
+        <div class="desc-text">
+          <p>La Maisonnette Narbonnaise vous accueille dans une charmante maison de ville calme, à deux pas du centre historique de Narbonne. Confort moderne avec climatisation, wifi, TV, cuisine équipée et linge fourni, idéale pour couples, familles ou voyageurs. Un petit garage sécurisé facilite le stationnement, et les enfants disposent de tout le nécessaire. Profitez de la loggia avec vue sur les jardins pour vos repas. Que vous visitiez la ville, les plages ou la réserve africaine de Sigean, vous bénéfi</p>
+          <p>Situé à 3 Bis rue Jules Verne 11100 Narbonne, cet hébergement vous offre un accès privilégié à Narbonne et ses environs.</p>
+        </div>
+        <div class="desc-img"><img src="https:/media/newdam/preset-rich-media-desktop/c3/01/40/00/00/c5/e0/e4/ef/5c/5ecfc301400000c5e0e4ef5c/5ecfc301400000c5e0e4ef5d.jpg" alt="La Maisonnette Narbonnaise"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s s-alt" id="photos">
+    <div class="w">
+      <div class="sh"><div class="tag">Galerie</div><h2>Decouvrez les lieux</h2></div>
+      <div class="g-grid">
+        <div class="g-item"><img src="https:/media/newdam/preset-rich-media-desktop/c2/de/55/00/00/68/3b/b0/8c/c3/5ecfc2de550000683bb08cc3/5ecfc2de550000683bb08cc4.jpg" alt="La Maisonnette Narbonnaise" loading="lazy"></div>
+        <div class="g-item"><img src="https:/media/newdam/preset-rich-media-desktop/c3/01/40/00/00/c5/e0/e4/ef/5c/5ecfc301400000c5e0e4ef5c/5ecfc301400000c5e0e4ef5d.jpg" alt="La Maisonnette Narbonnaise" loading="lazy"></div>
+        <div class="g-item"><img src="https:/media/newdam/preset-rich-media-desktop/c1/97/55/00/00/68/3b/b0/8c/b9/5ecfc197550000683bb08cb9/5ecfc197550000683bb08cba.jpg" alt="La Maisonnette Narbonnaise" loading="lazy"></div>
+        <div class="g-item"><img src="https:/media/newdam/preset-rich-media-desktop/c2/74/40/00/00/c5/e0/e4/ef/56/5ecfc274400000c5e0e4ef56/5ecfc274400000c5e0e4ef57.jpg" alt="La Maisonnette Narbonnaise" loading="lazy"></div>
+        <div class="g-item"><img src="https:/media/newdam/preset-rich-media-desktop/c1/79/5a/00/00/76/38/b3/13/7a/5ecfc1795a00007638b3137a/5ecfc1795a00007638b3137b.jpg" alt="La Maisonnette Narbonnaise" loading="lazy"></div>
+        <div class="g-item"><img src="https://www.pagesjaunes.fr/media/newdam/c2/de/55/00/00/68/3b/b0/8c/c3/5ecfc2de550000683bb08cc3/5ecfc2de550000683bb08cc4.jpg" alt="La Maisonnette Narbonnaise" loading="lazy"></div>
+        <div class="g-item"><img src="https://www.pagesjaunes.fr/media/newdam/c3/01/40/00/00/c5/e0/e4/ef/5c/5ecfc301400000c5e0e4ef5c/5ecfc301400000c5e0e4ef5d.jpg" alt="La Maisonnette Narbonnaise" loading="lazy"></div>
+        <div class="g-item"><img src="https://www.pagesjaunes.fr/media/newdam/c1/97/55/00/00/68/3b/b0/8c/b9/5ecfc197550000683bb08cb9/5ecfc197550000683bb08cba.jpg" alt="La Maisonnette Narbonnaise" loading="lazy"></div>
+        <div class="g-item"><img src="https://www.pagesjaunes.fr/media/newdam/c2/74/40/00/00/c5/e0/e4/ef/56/5ecfc274400000c5e0e4ef56/5ecfc274400000c5e0e4ef57.jpg" alt="La Maisonnette Narbonnaise" loading="lazy"></div>
+        <div class="g-item"><img src="https://www.pagesjaunes.fr/media/newdam/c1/79/5a/00/00/76/38/b3/13/7a/5ecfc1795a00007638b3137a/5ecfc1795a00007638b3137b.jpg" alt="La Maisonnette Narbonnaise" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+  <section class="s">
+    <div class="w">
+      <div class="sh"><div class="tag">Equipements</div><h2>Tout le confort necessaire</h2></div>
+      <div class="eq-grid">
+        <div class="eq"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg> Wi-Fi</div>
+        <div class="eq"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg> Cuisine equipee</div>
+        <div class="eq"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg> Parking</div>
+        <div class="eq"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg> Television</div>
+        <div class="eq"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg> Draps et serviettes</div>
+        <div class="eq"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Situation ideale</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contact">
+    <div class="w">
+      <h2>Reservez votre sejour</h2>
+      <p>Contactez directement le proprietaire pour reserver — sans commission, sans intermediaire.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/33610201732" class="c-btn c-wa" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg> WhatsApp</a>
+        <a href="tel:+33610201732" class="c-btn c-tel">06 10 20 17 32</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="prospect-banner" style="background:var(--s950);">
+    Ce site pourrait etre le votre pour <strong><s>79 EUR</s> 59 EUR</strong> —
+    <a href="https://wa.me/33784302389?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20votre%20offre%20de%20site%20web%20pour%20La%20Maisonnette%20Narbonnaise.">En savoir plus</a> · Baptiste — 07 84 30 23 89
+  </div>
+
+  <footer class="footer">
+    Cree par <a href="https://tiaitau999.github.io/direct-location/" style="color:var(--accent)">Direct Location</a> · Site de demonstration
+  </footer>
+
+</body>
+</html>
